@@ -1,19 +1,21 @@
-# models/amenity.py
 from .base_model import BaseModel
 
 class Amenity(BaseModel):
-    """Class representing an amenity"""
-
-    def __init__(self, name: str):
-        """
-        Initialize a new amenity
-        Args:
-            name (str): Name of the amenity
-        """
+    """Amenity class that inherits from BaseModel"""
+    
+    def __init__(self, name=None):
+        """Initialize amenity"""
         super().__init__()
-        self.validate_name(name)
         self.name = name
-        self.places = []  # List of places with this amenity
+        self.places = []
+
+    def to_dict(self):
+        """Convert amenity to dictionary"""
+        amenity_dict = super().to_dict()
+        amenity_dict.update({
+            'name': self.name
+        })
+        return amenity_dict
 
     @staticmethod
     def validate_name(name: str):
@@ -26,11 +28,3 @@ class Amenity(BaseModel):
         if place not in self.places:
             self.places.append(place)
             place.add_amenity(self)
-
-    def to_dict(self):
-        """Convert amenity to dictionary"""
-        amenity_dict = super().to_dict()
-        amenity_dict.update({
-            'name': self.name
-        })
-        return amenity_dict

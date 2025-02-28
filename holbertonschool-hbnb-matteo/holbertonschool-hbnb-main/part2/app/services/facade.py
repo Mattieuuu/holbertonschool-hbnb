@@ -59,10 +59,10 @@ def create_amenity(data):
     try:
         amenity = Amenity(name=data['name'])
     except ValueError as e:
-        return {"error": str(e)}
-
+        return None, str(e)  # Retourner une erreur sous forme de message
     amenity_repo.add(amenity)  # Utilise le repository pour ajouter la commodité
-    return amenity.to_dict()
+    return amenity, None  # Retourner l'amenity et aucune erreur
+
 
 def update_amenity(amenity_id, data):
     """Update an existing amenity."""
@@ -80,27 +80,43 @@ def update_amenity(amenity_id, data):
     return amenity.to_dict()
 
 class HBnBFacade:
-    _instance = None
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(HBnBFacade, cls).__new__(cls)
-            cls._instance._initialized = False
-        return cls._instance
-
     def __init__(self):
-        if self._initialized:
-            return
-        self._initialized = True
-        self.users = {}  # Dictionnaire pour stocker les utilisateurs
+        self.amenities = {}  # Simple in-memory storage
 
-    def update_user(self, user_id, user_data):
-        """Update a user"""
-        if user_id not in self.users:
-            return None
-        user = self.users[user_id]
-        user.update(user_data)
-        return user
+    def create_amenity(self, data):
+        """Create a new amenity"""
+        try:
+            if 'name' not in data:
+                return None, "Name is required"
+            
+            Amenity.validate_name(data['name'])
+            amenity = Amenity(name=data['name'])
+            self.amenities[amenity.id] = amenity
+            return amenity, None
+        except ValueError as e:
+            return None, str(e)
+
+    def get_amenity(self, amenity_id):
+        """Get amenity by ID"""
+        return self.amenities.get(amenity_id)
+
+    def get_all_amenities(self):
+        """Get all amenities"""
+        return list(self.amenities.values())
+
+    def update_amenity(self, amenity_id, data):
+        """Update amenity"""
+        amenity = self.get_amenity(amenity_id)
+        if not amenity:
+            return None, "Amenity not found"
+        
+        try:
+            if 'name' in data:
+                Amenity.validate_name(data['name'])
+                amenity.name = data['name']
+            return amenity, None
+        except ValueError as e:
+            return None, str(e)
 
 def get_facade():
     return HBnBFacade()
