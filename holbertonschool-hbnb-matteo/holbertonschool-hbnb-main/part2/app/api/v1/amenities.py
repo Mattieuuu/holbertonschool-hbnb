@@ -4,7 +4,6 @@ from app.services.facade import HBnBFacade
 
 api = Namespace('amenities', description='Amenity operations')
 
-# Définition du modèle pour l'input et l'output
 amenity_model = api.model('Amenity', {
     'name': fields.String(required=True, description='Name of the amenity')
 })
@@ -13,14 +12,17 @@ facade = HBnBFacade()
 
 @api.route('/')
 class AmenitiesResource(Resource):
+    @api.response(200, 'List of amenities retrieved successfully')
     def get(self):
-        """Get all amenities"""
+        """Retrieve a list of all amenities"""
         amenities = facade.get_all_amenities()
         return [amenity.to_dict() for amenity in amenities], 200
 
     @api.expect(amenity_model)
+    @api.response(201, 'Amenity successfully created')
+    @api.response(400, 'Invalid input data')
     def post(self):
-        """Create new amenity"""
+        """Register a new amenity"""
         data = api.payload
         amenity, error = facade.create_amenity(data)
         if error:
@@ -29,20 +31,25 @@ class AmenitiesResource(Resource):
 
 @api.route('/<amenity_id>')
 class AmenityResource(Resource):
+    @api.response(200, 'Amenity details retrieved successfully')
+    @api.response(404, 'Amenity not found')
     def get(self, amenity_id):
-        """Get amenity by ID"""
+        """Get amenity details by ID"""
         amenity = facade.get_amenity(amenity_id)
         if not amenity:
             return {"message": "Amenity not found"}, 404
         return amenity.to_dict(), 200
 
     @api.expect(amenity_model)
+    @api.response(200, 'Amenity updated successfully')
+    @api.response(404, 'Amenity not found')
+    @api.response(400, 'Invalid input data')
     def put(self, amenity_id):
-        """Update amenity"""
+        """Update an amenity's information"""
         data = api.payload
-        amenity, error = facade.update_amenity(amenity_id, data)
-        if error:
-            if error == "Amenity not found":
-                return {"message": error}, 404
-            return {"message": error}, 400
-        return amenity.to_dict(), 200
+        result = facade.update_amenity(amenity_id, data)
+        if isinstance(result, dict) and "error" in result:
+            return {"message": result["error"]}, 400
+        if result is None:
+            return {"message": "Amenity not found"}, 404
+        return {"message": "Amenity updated successfully"}, 200
