@@ -1,3 +1,21 @@
+"""
+Le Repository Pattern est un concept qui isole le code qui accède aux données.
+
+Imaginez une bibliothèque :
+- Les livres sont rangés quelque part (base de données)
+- Le bibliothécaire (repository) sait exactement où trouver chaque livre
+- Les visiteurs (le reste du code) demandent simplement un livre au bibliothécaire
+
+Avantages :
+1. On peut changer la façon dont les données sont stockées sans modifier le reste du code
+2. La logique de stockage est centralisée à un seul endroit
+3. Le code est plus facile à tester
+
+Dans ce fichier :
+- Les méthodes CRUD (Create, Read, Update, Delete) sont les opérations de base
+- Le stockage utilise un dictionnaire, mais pourrait facilement être changé pour une vraie base de données
+"""
+
 from abc import ABC, abstractmethod
 from app.models.amenity import Amenity
 

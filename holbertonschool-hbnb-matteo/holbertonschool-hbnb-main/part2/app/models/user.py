@@ -1,25 +1,25 @@
 from uuid import uuid4
 
 class User:
-    """Represents a user in the system.
+    """Représente un utilisateur dans le système.
     
-    This class manages user information including identification,
-    personal details and contact information.
+    Cette classe gère les informations des utilisateurs, notamment
+    l'identification, les informations personnelles et les coordonnées.
 
-    Attributes:
-        id (str): Unique identifier for the user
-        email (str): User's email address
-        first_name (str): User's first name
-        last_name (str): User's last name
+    Attributs:
+        id (str): Identifiant unique pour l'utilisateur
+        email (str): Adresse email de l'utilisateur
+        first_name (str): Prénom de l'utilisateur
+        last_name (str): Nom de famille de l'utilisateur
     """
     def __init__(self, first_name, last_name, email, id=None):
-        """Initialize a new User instance.
+        """Initialise une nouvelle instance d'Utilisateur.
         
         Args:
-            first_name (str): User's first name
-            last_name (str): User's last name 
-            email (str): User's email address
-            id (str, optional): Unique identifier. Defaults to generated UUID.
+            first_name (str): Prénom de l'utilisateur
+            last_name (str): Nom de famille de l'utilisateur
+            email (str): Adresse email de l'utilisateur
+            id (str, optionnel): Identifiant unique. Par défaut génère un UUID.
         """
         self.id = id or str(uuid4())
         self.email = email
@@ -27,10 +27,10 @@ class User:
         self.last_name = last_name
 
     def to_dict(self):
-        """Convert user instance to dictionary representation.
+        """Convertit l'instance utilisateur en représentation dictionnaire.
         
-        Returns:
-            dict: Dictionary containing user attributes
+        Retourne:
+            dict: Dictionnaire contenant les attributs de l'utilisateur
         """
         return {
             'id': self.id,
