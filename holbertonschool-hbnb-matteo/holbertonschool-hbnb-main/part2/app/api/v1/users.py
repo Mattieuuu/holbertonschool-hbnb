@@ -21,30 +21,42 @@ facade_instance = get_facade()
 
 @api.route('/')
 class UserList(Resource):
+    @api.response(200, 'List of users retrieved successfully')
     def get(self):
         """List all users"""
-        return facade_instance.get_users()
+        return facade_instance.get_users(), 200
 
     @api.expect(user_model)
-    
+    @api.response(201, 'User successfully created')
+    @api.response(400, 'Email already registered or invalid input data')
     def post(self):
         """Create a new user"""
-        return facade_instance.create_user(api.payload), 201
+        user, error = facade_instance.create_user(api.payload)
+        if error:
+            return {"message": error}, 400
+        return user, 201
 
 @api.route('/<string:user_id>')
 @api.param('user_id', 'The user identifier')
 class User(Resource):
+    @api.response(200, 'User details retrieved successfully')
+    @api.response(404, 'User not found')
     def get(self, user_id):
-        """Get a user by ID."""
-        user = facade_instance.get_user(user_id)
-        if not user:
-            api.abort(404, f"User {user_id} not found")
-        return user
+        """Get a user by ID"""
+        user, error = facade_instance.get_user(user_id)
+        if error:
+            return {"message": error}, 404
+        return user, 200
 
     @api.expect(user_model)
+    @api.response(200, 'User updated successfully')
+    @api.response(404, 'User not found')
+    @api.response(400, 'Invalid input data')
     def put(self, user_id):
-        """Update a user."""
-        user = facade_instance.update_user(user_id, api.payload)
-        if not user:
-            api.abort(404, f"User {user_id} not found")
-        return user
+        """Update a user"""
+        user, error = facade_instance.update_user(user_id, api.payload)
+        if error:
+            if error == "User not found":
+                return {"message": error}, 404
+            return {"message": error}, 400
+        return user, 200
