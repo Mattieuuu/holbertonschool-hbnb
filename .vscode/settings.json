@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./part2/app/models",
+        "./part2/app"
+    ]
+}
