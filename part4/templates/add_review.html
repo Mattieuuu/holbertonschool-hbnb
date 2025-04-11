@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Configuration de la page d'ajout d'avis -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBNB - Add Review</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+  <!-- En-tête standard -->
+  <header>
+    <!-- Conteneur pour le logo HBNB -->
+    <div class="logo-container">
+      <img src="/static/images/logo.png" alt="HBNB Logo" class="logo">
+    </div>
+    <!-- Barre de navigation principale -->
+    <nav>
+      <!-- Menu de navigation avec liens vers l'accueil et connexion -->
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html" class="login-button">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Formulaire d'ajout d'avis -->
+    <section class="add-review">
+      <!-- Le nom du logement sera inséré dynamiquement -->
+      <h1>Add a Review</h1>
+      <p class="place-name">[Place Name]</p>
+
+      <!-- Formulaire avec système de notation et zone de commentaire -->
+      <form class="form" id="review-form">
+        <!-- Système de notation par étoiles -->
+        <div class="form-group">
+          <label for="rating">Rating:</label>
+          <select id="rating" name="rating" required>
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+
+        <!-- Zone de texte pour l'avis détaillé -->
+        <div class="form-group">
+          <label for="review-text">Your Review:</label>
+          <textarea id="review-text" name="review-text" rows="6" required></textarea>
+        </div>
+
+        <!-- Boutons de soumission et d'annulation -->
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">Submit</button>
+          <a href="place.html" class="cancel-btn">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Pied de page standard -->
+  <footer>
+    <p>&copy; 2025 HBNB - All rights reserved</p>
+  </footer>
+</body>
+</html>

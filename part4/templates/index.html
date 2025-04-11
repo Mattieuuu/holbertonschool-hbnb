@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Configuration de base avec métadonnées et liens vers ressources externes -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBNB - Home</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="/static/images/icon.png">
+</head>
+<body>
+  <!-- En-tête avec logo et navigation -->
+  <header>
+    <!-- Zone du logo HBNB -->
+    <div class="logo-container">
+      <img src="/static/images/logo.png" alt="HBNB Logo" class="logo">
+    </div>
+    <!-- Navigation principale avec accueil et connexion -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html" class="login-button" id="login-link">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Titre principal de la page -->
+    <h1>Places to Stay</h1>
+
+    <!-- Filtre de prix avec menu déroulant -->
+    <div class="filter-container">
+      <!-- Permet aux utilisateurs de filtrer les logements par prix -->
+      <label for="price-filter">Filter by price:</label>
+      <select id="price-filter">
+        <option value="All">All</option>
+        <option value="10">10</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+
+    <!-- Conteneur principal pour la liste des logements -->
+    <!-- Cette section sera remplie dynamiquement par JavaScript -->
+    <section class="places-container" id="places-list">
+      <!-- Les cartes de lieux seront injectées ici dynamiquement via JS -->
+    </section>
+  </main>
+
+  <!-- Pied de page standard -->
+  <footer>
+    <p>&copy; 2025 HBNB - All rights reserved</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="/static/js/scripts.js"></script>
+</body>
+</html>

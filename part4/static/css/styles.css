@@ -1,0 +1,246 @@
+/* 
+  This is a SAMPLE File to get you started. Follow the instructions on the project to complete the tasks. 
+  You'll probably need to override some of theese styles.
+*/
+
+/* Reset global pour uniformiser l'affichage sur tous les navigateurs */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Style de base du corps de la page */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Styles de l'en-tête */
+/* L'en-tête utilise flexbox pour aligner le logo et la navigation */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style du logo - dimensions fixes requises */
+.logo {
+    height: 50px;
+}
+
+/* Navigation principale */
+/* Utilisation de flexbox pour aligner les éléments horizontalement */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+/* Espacement des éléments de navigation */
+nav ul li {
+    margin-right: 20px;
+}
+
+/* Style des liens de navigation */
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+/* Bouton de connexion - style distinctif avec couleur verte */
+.login-button {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* Zone de contenu principale */
+/* Largeur maximale et centrage pour une meilleure lisibilité */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Pied de page */
+/* Style simple avec fond sombre */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 20px;
+}
+
+/* Cartes des locations */
+/* Design avec ombre et coins arrondis pour un effet de profondeur */
+.place-card {
+    background-color: white;
+    border-radius: 10px; /* Required */
+    margin: 20px 0; /* Required */
+    border: 1px solid #ddd; /* Required */
+    overflow: hidden;
+}
+
+/* Images des locations - ratio fixe avec recadrage automatique */
+.place-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Zone d'information des locations */
+.place-info {
+    padding: 10px; /* Required padding */
+}
+
+/* Prix des locations - mise en évidence en rouge */
+.price {
+    color: #FF5A5F;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Bouton pour voir les détails */
+/* Style consistant avec le bouton de connexion */
+.details-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Grille responsive pour l'affichage des locations */
+/* S'adapte automatiquement à la largeur de l'écran */
+.places-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Page de détails d'une location */
+/* Conteneur principal avec fond blanc et coins arrondis */
+.place-details {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* Cartes des avis */
+/* Style cohérent avec les cartes de locations */
+.review-card {
+    background-color: white;
+    border-radius: 10px; /* Required */
+    padding: 10px; /* Required */
+    margin: 20px 0; /* Required */
+    border: 1px solid #ddd; /* Required */
+}
+
+/* Formulaire d'ajout d'avis */
+/* Centré avec une largeur maximale pour une meilleure ergonomie */
+.add-review {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+/* Styles généraux des formulaires */
+.form {
+    width: 100%;
+}
+
+/* Groupes de champs de formulaire */
+/* Organisation verticale avec espacement uniforme */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Style des boutons d'action */
+/* Disposition flexible avec espacement entre les boutons */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.submit-btn, .cancel-btn {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* Formulaire de connexion */
+/* Centré avec ombre portée pour le mettre en évidence */
+.login-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* Styles responsives */
+/* Adaptations pour les écrans mobiles */
+@media (max-width: 768px) {
+    .places-container {
+        grid-template-columns: 1fr;
+    }
+    
+    header {
+        flex-direction: column;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
